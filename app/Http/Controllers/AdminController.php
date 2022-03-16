@@ -124,7 +124,8 @@ class AdminController extends Controller
 
                 return response()->json([
                     'status' => 1,
-                    'status_value' => $user->status
+                    'status_value' => $user->status,
+                    'id' => $id
                 ]);
             } else{
                 return response()->json([

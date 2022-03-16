@@ -47,13 +47,13 @@
                       </td>
                       <td>
                         <div class="checkbox">
-                            <label><input id="status" data-id="{{ $user->id }}" type="checkbox" 
-                                name="status" value="{{ $user->status }}" @if($user->status == 1) checked @endif>@if($user->status == 1) <span id="d_status">Active</span> @else <span id="d_status">Inactive</span> @endif</label>
+                            <label><input class="status" data-id="{{ $user->id }}" type="checkbox" 
+                                name="status" value="{{ $user->status }}" @if($user->status == 1) checked @endif>@if($user->status == 1) <span class="d_status_{{ $user->id }}">Active</span> @else <span id="d_status">Inactive</span> @endif</label>
                         </div>
                       </td>
                       <td>
                           <a id="update" class="btn btn-info" href="{{ route('get:edit_user',$user->id) }}">Update</a>
-                          <a id="delete" data-id="{{ $user->id }}" class="btn btn-danger" href="javascript:void(0)">Delete</a>
+                          <a data-id="{{ $user->id }}" class="btn btn-danger delete" href="javascript:void(0)">Delete</a>
                       </td>
                   </tr>
               @endforeach
@@ -68,11 +68,11 @@
 
             $(document).ready( function () {
                 $('#users').DataTable({
-                    "pageLength": 1
+                    "pageLength": 10
                 });
             });
 
-            $('#delete').click(function(){               
+            $('.delete').click(function(){               
                 var id = $(this).attr('data-id');
                 var conf = confirm("Do you really want to delete user?");
                 if(conf){
@@ -92,7 +92,7 @@
                 }
             });
 
-            $('#status').change(function(){
+            $('.status').change(function(){
                 var value = $(this).val();
                 var id = $(this).attr('data-id');
                 if(id){
@@ -108,9 +108,9 @@
                             if(response.status == 1){                                                        
                                 $('#status').val(response.status_value);                                
                                 if(response.status_value == 1){
-                                    $('#d_status').html('Active');
+                                    $('.d_status_'+response.id).html('Active');
                                 } else{
-                                    $('#d_status').html('Inactive');
+                                    $('.d_status_'+response.id).html('Inactive');
                                 }   
                             }
                         }
