@@ -12,6 +12,11 @@
                     {{ Session::get('success') }}
                 </div>
             @endif
+            @if (Session::get('error'))
+                <div class="alert alert-danger">
+                    {{ Session::get('error') }}
+                </div>
+            @endif
         </div>
     </div>
     <h2>Welcome, <strong>{{ Auth::guard('admin')->user()->name }}</strong></h2>

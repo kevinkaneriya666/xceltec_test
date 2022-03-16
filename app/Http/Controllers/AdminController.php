@@ -47,6 +47,8 @@ class AdminController extends Controller
         if($user_id > 0){
             $user_data = User::where('id',$user_id)->first();
             return view('add_user_form',compact('user_data'));
+        } else{
+            return redirect()->back()->with('error','Something went wrong!');
         }
     }
 
