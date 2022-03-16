@@ -83,7 +83,7 @@ class AdminController extends Controller
             if($id){
                 return redirect()->route('get:dashboard')->with('success','User has been edited successfully!');
             } else{
-                return redirect()->route('get:dashboard')->with('success','User has been edited successfully!');
+                return redirect()->route('get:dashboard')->with('success','User has been added successfully!');
             }
         } else{
             return redirect()->back()->with('error','Something Went Wrong!');
