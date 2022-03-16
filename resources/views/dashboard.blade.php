@@ -43,7 +43,7 @@
                       <td>
                         <div class="checkbox">
                             <label><input id="status" data-id="{{ $user->id }}" type="checkbox" 
-                                name="status" value="{{ $user->status }}" @if($user->status == 1) checked @endif>Status</label>
+                                name="status" value="{{ $user->status }}" @if($user->status == 1) checked @endif>@if($user->status == 1) <span id="d_status">Active</span> @else <span id="d_status">Inactive</span> @endif</label>
                         </div>
                       </td>
                       <td>
@@ -78,7 +78,7 @@
                         },
                         success: function(response){
                             if(response.status == 1){
-                                alert('User deleted successfully!');
+                                //alert('User deleted successfully!');
                                 window.location.reload();                                    
                             }
                         }
@@ -99,12 +99,13 @@
                             _token: "{{ @csrf_token() }}"
                         },
                         success: function(response){
-                            if(response.status == 1){
-                                alert('status changed successfully!');                         
-                                $('#status').val(response.status_value);
+                            if(response.status == 1){                                                        
+                                $('#status').val(response.status_value);                                
                                 if(response.status_value == 1){
-                                    $('#status').prop('checked',true);
-                                }                                    
+                                    $('#d_status').html('Active');
+                                } else{
+                                    $('#d_status').html('Inactive');
+                                }   
                             }
                         }
                     });
