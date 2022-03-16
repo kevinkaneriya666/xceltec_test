@@ -62,7 +62,9 @@
         $(document).ready(function(){
 
             $(document).ready( function () {
-                $('#users').DataTable();
+                $('#users').DataTable({
+                    "pageLength": 1
+                });
             });
 
             $('#delete').click(function(){               
@@ -77,8 +79,7 @@
                             _token: "{{ @csrf_token() }}"
                         },
                         success: function(response){
-                            if(response.status == 1){
-                                //alert('User deleted successfully!');
+                            if(response.status == 1){                              
                                 window.location.reload();                                    
                             }
                         }
