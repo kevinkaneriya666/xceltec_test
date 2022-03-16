@@ -55,10 +55,14 @@ class AdminController extends Controller
         if($id != Null){
             $user = User::where('id',$id)->first();            
         } else{
-            $user = new User();
+            // $check_user = User::where('email',$request->get('email'))->orWhere('phone',$request->get('phone'))->get();
+            // if(count($check_user) > 0){
+            //     return redirect()->back()->with('error','Email Already Exiest!');
+            // }           
+            $user = new User();            
             $user->password = Hash::make($request->get('password'));
         }
-        
+
         $user->first_name = $request->get('fname');
         $user->last_name = $request->get('lname');
         $user->dob = $request->get('dob');

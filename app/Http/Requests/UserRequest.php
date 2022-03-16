@@ -26,9 +26,9 @@ class UserRequest extends FormRequest
         $rules['fname'] = 'required|max:255';
         $rules['lname'] = 'required|max:255';
         $rules['dob'] = 'required';
-        $rules['phone'] = 'required';
+        $rules['phone'] = 'required|unique:users,phone,'.$this->get('id');
         $rules['image'] = 'required|mimes:jpeg,png,jpg,gif,svg|max:5000';
-        $rules['email'] = 'required';
+        $rules['email'] = 'required|unique:users,email,'.$this->get('id');
         $rules['password'] = 'required';
         
         if($this->get('id')){
