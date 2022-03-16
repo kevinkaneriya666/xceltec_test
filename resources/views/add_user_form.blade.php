@@ -59,7 +59,7 @@
                     </div> 
                 @endif
                                   
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">@if(isset($user_data)) UPDATE @else ADD @endif</button>
               </form> 
         </div>
         </div>
